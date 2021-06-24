@@ -23,4 +23,3 @@ export default function Modal() {
   }
 }
 
-// parei as 1:27:22 do 4 dia da NLW
