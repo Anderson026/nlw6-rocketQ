@@ -14,5 +14,11 @@ route.get("/room", (req, res) => {
 route.get("/create-pass", (req, res) => {
   res.render("create-pass");
 });
+// rota para enviar os dados do formulário para o banco de dados
+route.get("/room/:room/:question/:action", (req, res) => {
+  res.render("exemplo", {req});
+});
 // exportando as rotas
 module.exports = route;
+
+// parei as 1:55:53 do 4 dia da NLW
