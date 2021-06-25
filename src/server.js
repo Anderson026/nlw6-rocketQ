@@ -12,6 +12,8 @@ const server = express();
 server.set("view engine", "ejs");
 // setando o caminho da pasta das views
 server.set("views", path.join(__dirname, "views"));
+// importando o middleware para pegar os dados do formulário post e enviar para o controller
+server.use(express.urlencoded({extended: true}))
 
 // importando os arquivos estáticos
 server.use(express.static("public"));
