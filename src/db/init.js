@@ -17,7 +17,8 @@ const initDb = {
       CREATE TABLE questions (
         id INTEGER PRIMARY KEY AUTOINCREMENT,
         title TEXT,
-        read INT 
+        read INT,
+        room INT 
       )
     `);
 
@@ -27,4 +28,4 @@ const initDb = {
 
 initDb.init();
 
-// parei em 3:08:26 da aula 4 da nlw
+
