@@ -18,6 +18,8 @@ route.get("/create-pass", (req, res) => {
 route.post("/create-room", roomController.create);
 // rota para a página room
 route.get("/room/:room", roomController.open);
+// rota para entrar na sala
+route.post("/enterRoom", roomController.enter);
 // rota para criar uma question
 route.post("/question/create/:room", questionController.create);
 // rota para enviar os dados do formulário para o banco de dados

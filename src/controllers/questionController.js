@@ -3,14 +3,32 @@ const Database = require("../db/config");
 
 module.exports = {
 
-  index(req, res) {
+  async index(req, res) {
+    const db = await Database();
     // separando as variáveis da rota de envido do formulário room
     const roomId = req.params.room;
     const questionId = req.params.question;
     const action = req.params.action;
     const password = req.body.password;
+    // Verificar se a senha está correta
+    const verifyRoom = await db.get(`SELECT * FROM rooms WHERE id = ${roomId}`);
+    if(verifyRoom.pass == password) {
+      if(action == "delete") {
 
-    console.log(`room = ${roomId}, question = ${questionId}, action = ${action}, password = ${password}`);
+        await db.run(`DELETE FROM questions WHERE id = ${questionId}`);
+
+      } else if (action == "check") {
+        
+        await db.run(`UPDATE questions SET 
+          read = 1 WHERE id = ${questionId}
+        `)
+
+      }
+      res.redirect(`/room/${roomId}`);
+    } else {
+      res.render("passIncorrect", {roomId: roomId});
+    }
+    
   },
   // criando a regra de negócios para criar uma question
   async create(req, res) {
